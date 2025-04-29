@@ -1,3 +1,8 @@
+data "aws_eks_cluster_auth" "cluster" {
+  name = aws_eks_cluster.this.name
+}
+
+
 resource "aws_eks_cluster" "this" {
   name     = var.cluster_name
   role_arn = aws_iam_role.eks_cluster_role.arn # var.cluster_role_arn
