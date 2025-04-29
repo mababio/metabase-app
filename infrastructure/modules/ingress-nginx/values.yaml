@@ -1,0 +1,4 @@
+controller:
+  replicaCount: ${replica_count}
+  image:
+    tag: ${tag}
