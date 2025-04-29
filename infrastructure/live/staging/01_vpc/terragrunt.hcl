@@ -9,7 +9,7 @@ terraform {
 
 inputs = {
   region              = "us-east-1"
-  cluster_name        = "mababio-us-mobile"
+  cluster_name        = "staging-eks-cluster"  # important that this mitches the eks cluster name. if not issue with ingress-nginx
   vpc_cidr            = "10.0.0.0/16"
   public_subnets      = ["10.0.1.0/24", "10.0.2.0/24"]
   private_subnets     = ["10.0.3.0/24", "10.0.4.0/24"]
