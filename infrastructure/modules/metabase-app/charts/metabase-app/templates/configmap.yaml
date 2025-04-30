@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: metebase-config
+  labels:
+    app: puppetserver
+    component: puppetdb
+data:
+  # Configuration properties
+  MB_DB_TYPE: "{{ .Values.env.MB_DB_TYPE }}"
+  MB_DB_DBNAME: "{{ .Values.env.MB_DB_DBNAME }}"
+  MB_DB_PORT: "{{ .Values.env.MB_DB_PORT }}"
+  MB_DB_USER: "{{ .Values.env.MB_DB_USER }}"
+  MB_DB_HOST: "{{ .Values.env.MB_DB_HOST }}"
