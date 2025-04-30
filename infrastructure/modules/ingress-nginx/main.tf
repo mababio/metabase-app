@@ -23,9 +23,6 @@ resource "kubernetes_namespace" "ingress_nginx" {
   }
 }
 
-# resource "aws_eip" "ingress_nginx_ip" {
-#   domain = "vpc"
-# }
 
 resource "helm_release" "ingress_nginx" {
   name       = var.name
