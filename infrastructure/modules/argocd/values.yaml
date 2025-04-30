@@ -1,0 +1,51 @@
+global:
+  image:
+    tag: v2.14.11  # Match your desired Argo CD version
+
+server:
+  service:
+    type: LoadBalancer
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-type: "nlb"  # Use NLB for better performance in EKS
+  ingress:
+    enabled: false  # If using ALB Ingress Controller or another Ingress, set to true and configure
+  extraArgs:
+    - --insecure  # Optional: use only if you want HTTP access without TLS in early dev/testing
+  config:
+    # Optional SSO or RBAC overrides here
+    applicationNamespaces: "*"
+
+configs:
+  cm:
+    # Optional: Auto-login default project on Argo CD UI
+    timeout.reconciliation: "30s"
+
+  rbac:
+    policy.default: role:readonly  # You can customize this further
+
+  secret:
+    createSecret: true
+    # You must hash your password using bcrypt:
+    # echo -n 'mypassword' | htpasswd -BinC 10 '' | cut -d ":" -f 2
+    argocdServerAdminPassword: ${password}
+
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 1
+
+controller:
+  replicas: 2
+  metrics:
+    enabled: true
+
+applicationSet:
+  enabled: true
+
+dex:
+  enabled: false  # Disable if you're not using SSO
+
+redis:
+  enabled: true
+
