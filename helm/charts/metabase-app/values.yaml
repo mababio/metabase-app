@@ -1,9 +1,10 @@
-ingress:
-  host: metabase.yourdomain.com
 image:
   repository: metabase/metabase
   tag: v0.49.3
   pullPolicy: IfNotPresent
+
+secrets:
+  mb_db_pass_id: metabase-app-db
 
 replicaCount: 1
 
@@ -15,9 +16,8 @@ env:
   MB_DB_TYPE: postgres
   MB_DB_DBNAME: metabase
   MB_DB_PORT: "5432"
-  MB_DB_USER: metabase_user
-  MB_DB_PASS: ""     # will be overridden by secret
-  MB_DB_HOST: ""     # will be overridden by secret
+  MB_DB_USER: metabaseuser
+  MB_DB_HOST: "metabase-postgres.c7df0wwhxfnn.us-east-1.rds.amazonaws.com"     # will be overridden by secret
 
 resources:
   limits:

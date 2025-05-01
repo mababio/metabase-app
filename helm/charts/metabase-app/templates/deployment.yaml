@@ -31,7 +31,7 @@ spec:
             - name: MB_DB_PASS
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "metabase-app.fullname" . }}-db
+                  name: {{.Values.secrets.mb_db_pass_id}}
                   key: MB_DB_PASS
           envFrom:
             - configMapRef:
