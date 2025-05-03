@@ -21,7 +21,6 @@ resource "helm_release" "argocd" {
     password = data.aws_secretsmanager_secret_version.password.secret_string
   })
   ]
-
   depends_on = [kubernetes_namespace.argocd]
 }
 

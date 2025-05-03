@@ -22,16 +22,6 @@ provider "helm" {
   }
 }
 
-# provider "argocd" {
-#   server_addr = outputs.argocd_server_host.value
-#   # "a8d0a2deb947a46d2a84577acb14b6c4-803f33bac90cdad1.elb.us-east-1.amazonaws.com:80"
-#   # "${var.argocd_host}:80"
-#
-#   username    = "admin"
-#   # password    = var.argocd_admin_password
-#   password = data.aws_secretsmanager_secret_version.password.secret_string
-#   insecure    = true # If using self-signed certificate
-# }
-#
+
 
 

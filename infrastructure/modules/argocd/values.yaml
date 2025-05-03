@@ -9,8 +9,12 @@ server:
       service.beta.kubernetes.io/aws-load-balancer-type: "nlb"  # Use NLB for better performance in EKS
   ingress:
     enabled: false  # If using ALB Ingress Controller or another Ingress, set to true and configure
-  extraArgs:
-    - --insecure  # Optional: use only if you want HTTP access without TLS in early dev/testing
+  tls:
+    enabled: true
+    cert: ""
+    key: ""
+#  extraArgs:
+#    - --insecure  # Optional: use only if you want HTTP access without TLS in early dev/testing
   config:
     # Optional SSO or RBAC overrides here
     applicationNamespaces: "*"
