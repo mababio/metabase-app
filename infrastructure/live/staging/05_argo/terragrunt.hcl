@@ -27,7 +27,5 @@ inputs = {
   k8s_token        = dependency.eks.outputs.k8s_token
   k8s_cluster_ca_certificate = dependency.eks.outputs.k8s_cluster_ca_certificate
   aws_managed_secret_id = "argocd-password1"
-  # value_files = ["staging_values.yaml"]
   k8s_cluster_name = dependency.eks.outputs.cluster_name
-  #"staging-eks-cluster"
 }

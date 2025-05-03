@@ -18,6 +18,7 @@ env:
   MB_DB_PORT: "5432"
   MB_DB_USER: metabaseuser
   MB_DB_HOST: "metabase-postgres.c7df0wwhxfnn.us-east-1.rds.amazonaws.com"     # will be overridden by secret
+  MB_DB_PASS: Y2hhbmdlTWUxMjMh
 
 resources:
   limits:

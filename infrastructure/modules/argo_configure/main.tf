@@ -1,31 +1,28 @@
-resource "argocd_application" "metabase" {
-  metadata {
-    name      = "metabase-app"
-    namespace = var.argco_server_namespace # "argocd"
-  }
-
-  spec {
-    source {
-      repo_url        = var.source_repo_url # "https://github.com/mababio/metabase-app.git"
-      path            = var.repo_path # "helm/charts/metabase-app" # Adjust path to your Helm chart
-      target_revision = "HEAD"
-      helm {
-        # atomic = true # Enable Helm atomic operations for auto-rollback
-        value_files = var.value_files #["values.yaml"]
-      }
-    }
-
-    destination {
-      server    = var.k8s_host
-      namespace =  var.app_namespace #"metabase"
-    }
-
-    sync_policy {
-      automated {
-        prune     = true # Delete old resources
-        self_heal = true # Automatically correct drift
-      }
-      sync_options = ["CreateNamespace=true"]
-    }
-  }
+resource "kubernetes_manifest" "metabase_app" {
+  manifest = yamldecode(<<-EOF
+    apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: metabase-app
+      namespace: ${var.argco_server_namespace}
+    spec:
+      project: default
+      source:
+        repoURL: ${var.source_repo_url}
+        targetRevision: HEAD
+        path: ${var.repo_path}
+        helm:
+          valueFiles:
+            - ${var.value_files}
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+  EOF
+  )
 }

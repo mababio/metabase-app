@@ -2,7 +2,6 @@
 variable "k8s_host" {
   description = "The Kubernetes cluster server host"
   type        = string
-  default = "https://kubernetes.default.svc"
 }
 
 variable "k8s_cluster_ca_certificate" {
@@ -39,8 +38,8 @@ variable "source_repo_url" {
 
 variable "value_files" {
     description = "List of value files for Helm chart"
-    type        = list(string)
-    default     = ["values.yaml"]
+     type = string
+     default = "values.yaml"
 }
 
 variable "app_namespace" {

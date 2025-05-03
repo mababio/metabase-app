@@ -18,10 +18,10 @@ dependency "argo_server" {
 
 # Define input variables for the Terraform module
 inputs = {
-  namespace        = "argocd"
+  argco_server_namespace        = "argocd"
   chart_version    = "7.9.0"
-  k8s_host         = "https://kubernetes.default.svc"
   k8s_token        = dependency.eks.outputs.k8s_token
+  k8s_host         = dependency.eks.outputs.k8s_host
   k8s_cluster_ca_certificate = dependency.eks.outputs.k8s_cluster_ca_certificate
   aws_managed_secret_id = "argocd-password1"
   value_files = ["staging_values.yaml"]
@@ -31,7 +31,8 @@ inputs = {
   argco_server_namespace = dependency.argo_server.outputs.argocd_server_namespace
   source_repo_url = "https://github.com/mababio/metabase-app.git"
   repo_path = "helm/charts/metabase-app"
-  value_files = ["staging_values.yaml"]
+  # value_files = ["staging_values.yaml"]
+  value_files = "staging_values.yaml"
   app_namespace = "metabase-app"
   argocd_admin_password = dependency.argo_server.outputs.argocd_server_password
   #"staging-eks-cluster"
