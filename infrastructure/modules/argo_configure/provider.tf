@@ -12,7 +12,8 @@ terraform {
 }
 
 data "aws_eks_cluster_auth" "this" {
-  name = "staging-eks-cluster"
+  name = var.k8s_cluster_name
+  # "staging-eks-cluster"
 }
 
 provider "kubernetes" {
@@ -22,8 +23,8 @@ provider "kubernetes" {
 }
 
 provider "argocd" {
-  server_addr = "a8d0a2deb947a46d2a84577acb14b6c4-803f33bac90cdad1.elb.us-east-1.amazonaws.com:80"
-  # "${var.argocd_host}:80"
+  server_addr = "${var.argocd_host}:80"
+  # "a8d0a2deb947a46d2a84577acb14b6c4-803f33bac90cdad1.elb.us-east-1.amazonaws.com:80"
 
   username    = "admin"
   password    = var.argocd_admin_password

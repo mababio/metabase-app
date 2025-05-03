@@ -30,7 +30,7 @@ resource "aws_security_group" "postgres_sg" {
   }
 }
 data "aws_secretsmanager_secret_version" "db_password" {
-  secret_id = "metabase-db-password"
+  secret_id = var.aws_secret_id_postgres
 }
 
 resource "aws_db_instance" "postgres" {

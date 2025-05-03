@@ -25,3 +25,9 @@ variable "allowed_cidrs" {
   type    = list(string)
   default = ["10.0.0.0/16"]  # Adjust as needed
 }
+
+variable "aws_secret_id_postgres" {
+    description = "The AWS Secrets Manager secret ID for the database password"
+    type        = string
+    default     = "metabase-db-password"
+}
