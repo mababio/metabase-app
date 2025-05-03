@@ -16,7 +16,6 @@ variable "chart_version" {
   default     = "5.51.6"
 }
 
-
 # Kubernetes
 variable "k8s_host" {
   description = "The Kubernetes cluster server host"
@@ -32,20 +31,6 @@ variable "aws_managed_secret_id" {
     description = "The AWS Secrets Manager secret ID"
     type        = string
 }
-
-# variable "argocd_admin_password" {
-#   description = "The Argo CD admin password"
-#   type        = string
-#   sensitive = true
-# }
-#
-
-# variable "value_files" {
-#     description = "List of value files for Helm chart"
-#     type        = list(string)
-#     default     = ["values.yaml"]
-# }
-#
 
 variable "k8s_cluster_name" {
     description = "The name of the EKS cluster"
