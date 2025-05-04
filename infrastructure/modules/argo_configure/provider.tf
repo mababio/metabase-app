@@ -4,6 +4,10 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = "2.24.0"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "=2.11.0"
+    }
   }
 }
 
@@ -17,3 +21,4 @@ provider "kubernetes" {
   token                  = data.aws_eks_cluster_auth.this.token
   cluster_ca_certificate = base64decode(var.k8s_cluster_ca_certificate)
 }
+

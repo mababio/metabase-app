@@ -10,6 +10,7 @@ metadata:
 spec:
   replicas: {{ .Values.replicaCount }}
   revisionHistoryLimit: 5
+  progressDeadlineSeconds: 120
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "metabase-app.name" . }}
@@ -39,10 +40,20 @@ spec:
                 name: metebase-config
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+
+
   strategy:
-    canary:
-      steps:
-        - setWeight: 20
-        - pause:
-            duration: 30s
-        - setWeight: 100
+    blueGreen:
+      activeService: {{ include "metabase-app.fullname" . }}-active
+      previewService: {{ include "metabase-app.fullname" . }}-preview
+      autoPromotionEnabled: false
+      autoPromotionSeconds: 30
+### This the Canary strategy
+{{/*  strategy:*/}}
+{{/*    canary:*/}}
+{{/*      steps:*/}}
+{{/*        - setWeight: 20*/}}
+{{/*        - pause: { }*/}}
+{{/*        - setWeight: 100*/}}
+{{/*      abortScaleDownDelaySeconds: 30*/}}
+{{/*      autoPromotionEnabled: true*/}}
