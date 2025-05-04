@@ -56,3 +56,16 @@ Once you `terragrunt apply` all the `terragrunt.hcl` files, you will have the fo
 - RDS Postgres database
 - Ingress controller (NGINX)
 - Argo CD instance that configures itself to sync with this Git repository.
+
+## Next Steps
+This app is in staging POC stage. Here are some important things we need to do before we can deploy this app to production:
+- Find out a way to inject secrets into the app. We can use AWS Secrets Manager in some capacity. Right now, we have encrypted secrets in the repo. This is not ideal.
+- Stress test metabase application. Get a baseline of performance.
+- Create a architecture diagram of the infrastructure and application.
+- Ensure environments are separated.
+- At some point come up with a disaster recovery plan. IAC is great start. but expand on that. EKS master nodes across multiple AZs.
+- domain name for the app. We can use AWS Route 53 to create a domain name for the app.
+- ssl certificate for the app. We can use AWS Certificate Manager to create a ssl certificate for the app.
+- monitoring and logging for the app. We can use Prometheus and Grafana for monitoring and logging. We can also use AWS CloudWatch for monitoring and logging.
+- think of some alerts SLOs and SLAs for the app. 
+- Setup meeting with stakeholders to discuss the app and get feedback.
