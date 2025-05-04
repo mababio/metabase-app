@@ -1,47 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "metabase-app.fullname" . }}
+  labels:
+    {{- include "metabase-app.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "metabase-app.selectorLabels" . | nindent 4 }}
+
+
 {{/*apiVersion: v1*/}}
 {{/*kind: Service*/}}
 {{/*metadata:*/}}
-{{/*  name: {{ include "metabase-app.fullname" . }}*/}}
+{{/*  name: {{ include "metabase-app.fullname" . }}-active*/}}
 {{/*  labels:*/}}
-{{/*    {{- include "metabase-app.labels" . | nindent 4 }}*/}}
+{{/*    app: {{ include "metabase-app.name" . }}*/}}
 {{/*spec:*/}}
-{{/*  type: {{ .Values.service.type }}*/}}
+{{/*  selector:*/}}
+{{/*    app.kubernetes.io/name: {{ include "metabase-app.name" . }}*/}}
+{{/*    app.kubernetes.io/instance: {{ .Release.Name }}*/}}
 {{/*  ports:*/}}
-{{/*    - port: {{ .Values.service.port }}*/}}
+{{/*    - port: 80*/}}
 {{/*      targetPort: http*/}}
 {{/*      protocol: TCP*/}}
-{{/*      name: http*/}}
+
+{{/*---*/}}
+{{/*apiVersion: v1*/}}
+{{/*kind: Service*/}}
+{{/*metadata:*/}}
+{{/*  name: {{ include "metabase-app.fullname" . }}-preview*/}}
+{{/*  labels:*/}}
+{{/*    app: {{ include "metabase-app.name" . }}*/}}
+{{/*spec:*/}}
 {{/*  selector:*/}}
-{{/*    {{- include "metabase-app.selectorLabels" . | nindent 4 }}*/}}
-
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "metabase-app.fullname" . }}-active
-  labels:
-    app: {{ include "metabase-app.name" . }}
-spec:
-  selector:
-    app.kubernetes.io/name: {{ include "metabase-app.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-  ports:
-    - port: 80
-      targetPort: http
-      protocol: TCP
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "metabase-app.fullname" . }}-preview
-  labels:
-    app: {{ include "metabase-app.name" . }}
-spec:
-  selector:
-    app.kubernetes.io/name: {{ include "metabase-app.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-  ports:
-    - port: 80
-      targetPort: http
-      protocol: TCP
+{{/*    app.kubernetes.io/name: {{ include "metabase-app.name" . }}*/}}
+{{/*    app.kubernetes.io/instance: {{ .Release.Name }}*/}}
+{{/*  ports:*/}}
+{{/*    - port: 80*/}}
+{{/*      targetPort: http*/}}
+{{/*      protocol: TCP*/}}
