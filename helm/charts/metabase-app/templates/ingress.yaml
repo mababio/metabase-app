@@ -14,6 +14,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ include "metabase-app.fullnamee" . }}
+                name: {{ include "metabase-app.fullname" . }}
                 port:
                   number: 80

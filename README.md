@@ -69,3 +69,5 @@ This app is in staging POC stage. Here are some important things we need to do b
 - monitoring and logging for the app. We can use Prometheus and Grafana for monitoring and logging. We can also use AWS CloudWatch for monitoring and logging.
 - think of some alerts SLOs and SLAs for the app. 
 - Setup meeting with stakeholders to discuss the app and get feedback.
+- Move from public k8s  control panel to private k8s control panel. This is a security risk. Anyone can see metadata of k8s cluster.
+- 
