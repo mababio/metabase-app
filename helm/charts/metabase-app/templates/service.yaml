@@ -30,18 +30,19 @@ spec:
 {{/*      targetPort: http*/}}
 {{/*      protocol: TCP*/}}
 
-{{/*---*/}}
-{{/*apiVersion: v1*/}}
-{{/*kind: Service*/}}
-{{/*metadata:*/}}
-{{/*  name: {{ include "metabase-app.fullname" . }}-preview*/}}
-{{/*  labels:*/}}
-{{/*    app: {{ include "metabase-app.name" . }}*/}}
-{{/*spec:*/}}
-{{/*  selector:*/}}
-{{/*    app.kubernetes.io/name: {{ include "metabase-app.name" . }}*/}}
-{{/*    app.kubernetes.io/instance: {{ .Release.Name }}*/}}
-{{/*  ports:*/}}
-{{/*    - port: 80*/}}
-{{/*      targetPort: http*/}}
-{{/*      protocol: TCP*/}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "metabase-app.fullname" . }}-preview
+  labels:
+    app: {{ include "metabase-app.name" . }}
+spec:
+  selector:
+    app.kubernetes.io/name: {{ include "metabase-app.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  type: {{ .Values.service.type }}
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
