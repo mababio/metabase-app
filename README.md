@@ -75,4 +75,6 @@ This app is in staging POC stage. Here are some important things we need to do b
 - think of some alerts SLOs and SLAs for the app. 
 - Setup meeting with stakeholders to discuss the app and get feedback.
 - Move from public k8s  control panel to private k8s control panel. This is a security risk. Anyone can see metadata of k8s cluster.
-- 
+- Does out network support IPv6? make sure VPC is future proof
+- Dynamo may not be needed with latest version og terraform. do some research
+https://aws.plainenglish.io/farewell-to-dynamodb-terraform-s3-backend-supports-native-locking-4da4dbba4ef6
