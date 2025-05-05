@@ -13,6 +13,7 @@ spec:
       name: http
   selector:
     {{- include "metabase-app.selectorLabels" . | nindent 4 }}
+    rollouts-pod-template-hash: "{{`{{ .RolloutStableHash }}`}}"
 
 
 {{/*apiVersion: v1*/}}
@@ -41,6 +42,7 @@ spec:
   selector:
     app.kubernetes.io/name: {{ include "metabase-app.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
+    rollouts-pod-template-hash: "{{`{{ .RolloutStableHash }}`}}"
   type: {{ .Values.service.type }}
   ports:
     - port: 80
