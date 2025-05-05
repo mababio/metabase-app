@@ -10,7 +10,7 @@ metadata:
 spec:
   replicas: {{ .Values.replicaCount }}
   revisionHistoryLimit: 5
-  progressDeadlineSeconds: 120
+  progressDeadlineSeconds: 500
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "metabase-app.name" . }}
