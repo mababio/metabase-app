@@ -4,10 +4,15 @@
 
 This project demonstrates a fully automated GitOps CI/CD pipeline for deploying a containerized application to an AWS Elastic Kubernetes Service (EKS) cluster.
 It uses
-- Terraform for infrastructure provisioning
-- Along with the terraform wrapper Terragrunt
+- Terraform for infrastructure provisioning. 
+  - Wanted to use a Cloud agnostic IaC tool, and Terraform is the most popular and widely used tool for this purpose.
+  - We want a step further so we used terragrunt to manage our terraform code.
 - Helm for Kubernetes package management
+  - We are using Helm to package our application and deploy it to the EKS cluster.
+  - Utimately, we must use helm also for argo.
 - Argo CD for GitOps-based continuous delivery.
+  - We are using Argo CD to manage the deployment of our application to the EKS cluster.
+  - automates the deployment of our application to the EKS cluster and  drift detection.
 
 
 
