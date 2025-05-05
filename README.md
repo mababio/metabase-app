@@ -6,7 +6,7 @@ This project demonstrates a fully automated GitOps CI/CD pipeline for deploying 
 It uses
 - Terraform for infrastructure provisioning. 
   - Wanted to use a Cloud agnostic IaC tool, and Terraform is the most popular and widely used tool for this purpose.
-  - We want a step further so we used terragrunt to manage our terraform code.
+  - We went a step further so we used terragrunt to manage our terraform code.
 - Helm for Kubernetes package management
   - We are using Helm to package our application and deploy it to the EKS cluster.
   - Utimately, we must use helm also for argo.
